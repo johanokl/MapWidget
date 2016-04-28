@@ -1,0 +1,38 @@
+#body {
+  margin: auto;
+}
+
+#header {
+  position: relative;
+  font-family: sans-serif;
+  font-size: 1.5em;
+  margin: auto;
+  font-style: normal;
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+#container {
+  width: 100%;
+  height: 450px;
+  max-width: 800px;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  margin: auto;
+}
+
+#map {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+@media  (min-width: 900px) {
+  #container {
+    height: 550px;
+  }
+}
