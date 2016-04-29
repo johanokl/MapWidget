@@ -1,15 +1,13 @@
+var mapWidgetInstance;
+
 function initMap() {
-  var mapDiv, map,
-    mapOptions = {}, restaurants = [];
+  // Set the URL to the data file here.
+  var sourceurl = "data.json";
+  // Set to true for XHR same-domain loading, set to false for JSONP.
+  // JSONP files have to be wrapped in 'addMarkers(..)'
+  var useXhr = true;
 
-  var request = new XMLHttpRequest();
-  request.open('GET', 'data.json', false);
-  request.send(null);
-  if (request.status === 200) {
-    restaurants = JSON.parse(request.responseText);
-  }
-
-  mapOptions = {
+  var mapOptions = {
     zoom: 14,
     center: {lat: 58.4108 , lng: 15.6214 },
     disableDefaultUI: true,
@@ -18,9 +16,26 @@ function initMap() {
     zoomControl: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  mapDiv = document.getElementById('map');
-  map = new google.maps.Map(mapDiv, mapOptions);
+  mapWidgetInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+  if (useXhr) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE &&
+          request.status === 200) {
+        addMarkers(JSON.parse(request.responseText));
+      }
+    };
+    request.open('GET', sourceurl, true);
+    request.send();
+  } else {
+    var script = document.createElement('script');
+    script.src = sourceurl;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+}
+
+function addMarkers(restaurants) {
   function createMarker(restaurant) {
     var infowindow = new google.maps.InfoWindow({
       content: "<b>" + restaurant.name + "</b><br>" +
@@ -29,14 +44,13 @@ function initMap() {
     });
     var marker = new google.maps.Marker({
       position: restaurant.pos,
-      map: map,
+      map: mapWidgetInstance,
       title: restaurant.name
     });
     marker.addListener('click', function() {
-      infowindow.open(map, marker);
+      infowindow.open(mapWidgetInstance, marker);
     });
   }
-
   for (var i = 0; i < restaurants.length; i++) {
     createMarker(restaurants[i]);
   }
