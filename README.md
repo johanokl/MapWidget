@@ -21,7 +21,7 @@ It should be formatted according to the following format:
   "pos": {"lat": 58.410228, "lng": 15.621343}
 }]
 ```
-For JSONP, wrap the array in `addMarkers(...)`.
+For JSONP, wrap the array in `displayMap(...)`.
 
 ---
 

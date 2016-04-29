@@ -1,29 +1,25 @@
-var mapWidgetInstance;
+/*global google */
+/*exported initMap, displayMap */
+
+// Set the URL to the data file here.
+var sourceurl = "data.json";
+// Set to true for XHR same-domain loading, set to false for JSONP.
+// JSONP files have to be wrapped in 'displayMap(..)'
+var useXhr = true;
+// This sets where the map should start.
+// Default is Linköping, Sweden.
+var mapStartPosition = {
+  lat: 58.4108,
+  lng: 15.6214
+};
 
 function initMap() {
-  // Set the URL to the data file here.
-  var sourceurl = "data.json";
-  // Set to true for XHR same-domain loading, set to false for JSONP.
-  // JSONP files have to be wrapped in 'addMarkers(..)'
-  var useXhr = true;
-
-  var mapOptions = {
-    zoom: 14,
-    center: {lat: 58.4108 , lng: 15.6214 },
-    disableDefaultUI: true,
-    mapTypeControl: false,
-    scaleControl: false,
-    zoomControl: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  mapWidgetInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
-
   if (useXhr) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE &&
           request.status === 200) {
-        addMarkers(JSON.parse(request.responseText));
+        displayMap(JSON.parse(request.responseText));
       }
     };
     request.open('GET', sourceurl, true);
@@ -35,7 +31,20 @@ function initMap() {
   }
 }
 
-function addMarkers(restaurants) {
+function displayMap(restaurants) {
+  var mapOptions = {
+    zoom: 14,
+    center: mapStartPosition,
+    disableDefaultUI: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    zoomControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var mapWidgetInstance = new google.maps.Map(
+    document.getElementById('map'),
+    mapOptions
+  );
   function createMarker(restaurant) {
     var infowindow = new google.maps.InfoWindow({
       content: "<b>" + restaurant.name + "</b><br>" +
