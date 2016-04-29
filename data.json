@@ -1,16 +1,17 @@
 [{
-  "name": "Djurens Rätt",
-  "address": "Nygatan 58",
-  "description": "Här ligger Djurens Rätts lokal i Linköping.",
-  "pos": {"lat": 58.40890081475817, "lng": 15.616797208786009}
-},{
-  "name": "Babettes kafferi",
-  "address": "Stora Badstugatan 4",
-  "description": "Här kan man ha en kort beskrivning varför restaurangen står med.",
-  "pos": {"lat": 58.40927737547476, "lng": 15.623062849044798}
+  "name": "Café One",
+  "address": "Back Street 3",
+  "description": "Delicious coffee and pastries.",
+  "pos": {
+    "lat": 58.40927737547476,
+    "lng": 15.623062849044798
+  }
 }, {
-  "name": "Rendez-vous Kebab",
-  "address": "Stora Torget 2",
-  "description": "Här kan man ha en kort beskrivning varför restaurangen står med.",
-  "pos": {"lat": 58.410228, "lng": 15.621343}
+  "name": "Pizzeria Two",
+  "address": "Main Street 123",
+  "description": "Has vegan food!",
+  "pos": {
+    "lat": 58.410228,
+    "lng": 15.621343
+  }
 }]
