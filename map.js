@@ -39,7 +39,14 @@ function displayMap(restaurants) {
     mapTypeControl: false,
     scaleControl: false,
     zoomControl: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [{
+      featureType: "poi",
+      elementType: "labels",
+      stylers: [{
+        visibility: "off"
+      }]
+    }]
   };
   var mapWidgetInstance = new google.maps.Map(
     document.getElementById('map'),
