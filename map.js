@@ -31,7 +31,7 @@ function initMap() {
   }
 }
 
-function displayMap(restaurants) {
+function displayMap(locations) {
   var mapOptions = {
     zoom: 14,
     center: mapStartPosition,
@@ -52,22 +52,22 @@ function displayMap(restaurants) {
     document.getElementById('map'),
     mapOptions
   );
-  function createMarker(restaurant) {
+  function createMarker(location) {
     var infowindow = new google.maps.InfoWindow({
-      content: "<b>" + restaurant.name + "</b><br>" +
-        restaurant.address + "<br><br>" +
-        restaurant.description
+      content: "<b>" + location.name + "</b><br>" +
+        location.address + "<br><br>" +
+        location.description
     });
     var marker = new google.maps.Marker({
-      position: restaurant.pos,
+      position: location.pos,
       map: mapWidgetInstance,
-      title: restaurant.name
+      title: location.name
     });
     marker.addListener('click', function() {
       infowindow.open(mapWidgetInstance, marker);
     });
   }
-  for (var i = 0; i < restaurants.length; i++) {
-    createMarker(restaurants[i]);
+  for (var i = 0; i < locations.length; i++) {
+    createMarker(locations[i]);
   }
 }

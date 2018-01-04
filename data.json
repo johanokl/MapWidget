@@ -1,7 +1,7 @@
 [{
   "name": "Café One",
   "address": "Back Street 3",
-  "description": "Delicious coffee and pastries.",
+  "description": "Delicious caffe latte.",
   "pos": {
     "lat": 58.40927737547476,
     "lng": 15.623062849044798
@@ -9,7 +9,7 @@
 }, {
   "name": "Pizzeria Two",
   "address": "Main Street 123",
-  "description": "Has vegan food!",
+  "description": "Cheap and tasty.",
   "pos": {
     "lat": 58.410228,
     "lng": 15.621343
